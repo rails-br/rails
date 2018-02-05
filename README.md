@@ -16,14 +16,15 @@ Although most Rails models are backed by a database, models can also be ordinary
 Ruby classes, or Ruby classes that implement a set of interfaces as provided by
 the Active Model module. You can read more about Active Model in its [README](activemodel/README.rdoc).
 
-The _Controller layer_ is responsible for handling incoming HTTP requests and
-providing a suitable response. Usually this means returning HTML, but Rails controllers
-can also generate XML, JSON, PDFs, mobile-specific views, and more. Controllers load and
-manipulate models, and render view templates in order to generate the appropriate HTTP response.
-In Rails, incoming requests are routed by Action Dispatch to an appropriate controller, and
-controller classes are derived from `ActionController::Base`. Action Dispatch and Action Controller
-are bundled together in Action Pack. You can read more about Action Pack in its
-[README](actionpack/README.rdoc).
+A _Camada Controller_ é responsável pelo tratamento de requisições HTTP recebidas e 
+prover uma resposta adequada. Normalmente isso significa retornar HTML, mas as _controllers_ do _Rails_
+também podem gerar XML, JSON, PDFs, visualizações específicas para dispositivos móveis, e outros.
+As _Controllers_ carregam e manipulam as _Models_, e renderizam os  _templates_ da _View_ 
+com a finalidade de gerar a resposta HTTP apropriada.
+No _Rails_, requisições recebidas são direcionadas pela _ActionDispatch_ para uma 
+_controller_ apropriada, e as classes _controller_ são derivadas da `ActionController::Base`.
+A _ActionDispatch_ e a _ActionController_ são empacotadas juntas no _ActionPack_.
+Você pode ler mais sobre a _ActionPack_ no seu [README](actionpack/README.rdoc).
 
 The _View layer_ is composed of "templates" that are responsible for providing
 appropriate representations of your application's resources. Templates can
