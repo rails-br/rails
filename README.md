@@ -16,33 +16,30 @@ Although most Rails models are backed by a database, models can also be ordinary
 Ruby classes, or Ruby classes that implement a set of interfaces as provided by
 the Active Model module. You can read more about Active Model in its [README](activemodel/README.rdoc).
 
-The _Controller layer_ is responsible for handling incoming HTTP requests and
-providing a suitable response. Usually this means returning HTML, but Rails controllers
-can also generate XML, JSON, PDFs, mobile-specific views, and more. Controllers load and
-manipulate models, and render view templates in order to generate the appropriate HTTP response.
-In Rails, incoming requests are routed by Action Dispatch to an appropriate controller, and
-controller classes are derived from `ActionController::Base`. Action Dispatch and Action Controller
-are bundled together in Action Pack. You can read more about Action Pack in its
-[README](actionpack/README.rdoc).
+A _Camada Controller_ é responsável pelo tratamento de requisições HTTP recebidas e 
+prover uma resposta adequada. Normalmente isso significa retornar HTML, mas as _controllers_ do Rails
+também podem gerar XML, JSON, PDFs, visualizações específicas para dispositivos móveis, e outros.
+As _Controllers_ carregam e manipulam as _Models_, e renderizam os  _templates_ da _View_ 
+com a finalidade de gerar a resposta HTTP apropriada.
+No Rails, requisições recebidas são direcionadas pela _Action Dispatch_ para uma 
+_controller_ apropriada, e as classes _controller_ são derivadas da `ActionController::Base`.
+A _Action Dispatch_ e a _Action Controller_ são empacotadas juntas no _Action Pack_.
+Você pode ler mais sobre a _Action Pack_ no seu [README](actionpack/README.rdoc).
 
-The _View layer_ is composed of "templates" that are responsible for providing
-appropriate representations of your application's resources. Templates can
-come in a variety of formats, but most view templates are HTML with embedded
-Ruby code (ERB files). Views are typically rendered to generate a controller response,
-or to generate the body of an email. In Rails, View generation is handled by Action View.
-You can read more about Action View in its [README](actionview/README.rdoc).
+A camada _View_ é composta de "_templates_" que são resonsáveis por prover
+representações apropriadas dos recursos em sua aplicação.
+_Templates_ podem ser feitos em formatos variados, mas a maioria dos _templates_ são HTML com código Ruby embutido (arquivos ERB).
+As _Views_ são tipicamente renderizadas para gerar uma resposta da _controller_, ou para gerar o conteúdo de um email.
+No Rails, a geração de _views_ é feita pela _Action View_.
+Você pode ler mais sobre a _Action View_ no [README](actionview/README.rdoc).
 
-Active Record, Active Model, Action Pack, and Action View can each be used independently outside Rails.
-In addition to that, Rails also comes with Action Mailer ([README](actionmailer/README.rdoc)), a library
-to generate and send emails; Active Job ([README](activejob/README.md)), a
-framework for declaring jobs and making them run on a variety of queueing
-backends; Action Cable ([README](actioncable/README.md)), a framework to
-integrate WebSockets with a Rails application;
-Active Storage ([README](activestorage/README.md)), a library to attach cloud
-and local files to Rails applications;
-and Active Support ([README](activesupport/README.rdoc)), a collection
-of utility classes and standard library extensions that are useful for Rails,
-and may also be used independently outside Rails.
+
+_Active Record_, _Active Model_, _Action Pack_, e _Action View_ podem, cada uma delas, ser utilizadas de forma independente ao Rails.
+Além disso, o Rails também possui: _Action Mailer_ ([README](actionmailer/README.rdoc)), uma biblioteca
+para gerar e enviar emails; _Active Job_ ([README](activejob/README.md)), um _framework_ para declarar _jobs_ e fazê-los rodar em uma variedade de filas no background;
+_Action Cable_ ([README](actioncable/README.md)), um _framework_ para integrar WebSockets com uma applicação Rails;
+_Active Storage_ ([README](activestorage/README.md)), uma biblioteca para anexar arquivos locais ou da nuvem em aplicações Rails;
+e _Active Support_ ([README](activesupport/README.rdoc)), uma coleção de classes de utilidade e extensões da biblioteca padrão que são úteis ao Rails, mas que podem ser usadas independentemente fora do Rails.
 
 ## Iniciando
 
