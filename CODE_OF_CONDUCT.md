@@ -1,12 +1,11 @@
-# Contributor Code of Conduct
+# Código de Conduta do Contribuidor
 
-The Rails team is committed to fostering a welcoming community.
+O time do Rails está comprometido na promoção de uma comunidade acolhedora.
 
-**Our Code of Conduct can be found here**:
+**Nosso Código de Conduta pode ser encontrado aqui**:
 
 http://rubyonrails.org/conduct/
 
-For a history of updates, see the page history here:
+Para obter um histórico de atualizações, veja o histórico da página aqui:
 
 https://github.com/rails/rails.github.com/commits/master/conduct/index.html
-
