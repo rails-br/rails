@@ -1,40 +1,34 @@
-# Releasing Rails
+# Criando uma _Release_ do Rails
 
-In this document, we'll cover the steps necessary to release Rails. Each
-section contains steps to take during that time before the release. The times
-suggested in each header are just that: suggestions. However, they should
-really be considered as minimums.
+Neste documento, vamos cobrir os passos necessários para criar uma _release_ do Rails.
+Cada seção contém passos a serem tomados antes da _release_. As datas sugeridas
+em cada cabeçalho são justamente isso: sugestões.
+Porém, elas deveriam realmente serem consideradas como período mínimo.
 
-## 10 Days before release
+## 10 Dias antes da _release_
 
-Today is mostly coordination tasks. Here are the things you must do today:
+As tarefas de hoje são, em sua maioria, de coordenação. Aqui estão algumas coisas que devem ser feitas por você hoje:
 
-### Is the CI green? If not, make it green. (See "Fixing the CI")
+### O CI está verde? Se não, deixe-o verde (Veja "Consertando o CI")
 
-Do not release with a Red CI. You can find the CI status here:
+Não crie uma release com um CI vermelho. Você pode ver o status
+do CI [aqui](http://travis-ci.org/rails/rails).
 
-```
-http://travis-ci.org/rails/rails
-```
+### O Sam Ruby está feliz? Se não estiver, deixe-o feliz.
 
-### Is Sam Ruby happy? If not, make him happy.
-
-Sam Ruby keeps a [test suite](https://github.com/rubys/awdwr) that makes
-sure the code samples in his book
-([Agile Web Development with Rails](https://pragprog.com/titles/rails5/agile-web-development-with-rails-5th-edition))
-all work. These are valuable system tests
-for Rails. You can check the status of these tests here:
-
+Sam Ruby mantém uma [suíte de testes](https://github.com/rubys/awdwr)
+que garante que os exemplos de código de seu livro ([Agile Web Development with Rails](https://pragprog.com/titles/rails5/agile-web-development-with-rails-5th-edition))
+todos funcionem. Esses são testes de sistema valiosos para o Rails.
+Você pode checar o status destes testes aqui:
 [http://intertwingly.net/projects/dashboard.html](http://intertwingly.net/projects/dashboard.html)
 
-Do not release with Red AWDwR tests.
+Não gere uma _release_ tendo testes AWDwR no vermelho.
 
-### Do we have any Git dependencies? If so, contact those authors.
+### Temos alguma dependência no Git? Se sim, contate estes autores.
 
-Having Git dependencies indicates that we depend on unreleased code.
-Obviously Rails cannot be released when it depends on unreleased code.
-Contact the authors of those particular gems and work out a release date that
-suits them.
+Possuir dependências no Git significa que nós dependemos de código sem _release_.
+Obviamente o Rails não pode de forma alguma ter uma _release_ que depende de código não finalizado.
+Contate os autores dessas _gems_ em particular e negocie uma data para a _release_ que funcione para eles.
 
 ### Contact the security team (either tenderlove or rafaelfranca)
 
