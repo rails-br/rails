@@ -30,43 +30,42 @@ Possuir dependências no Git significa que nós dependemos de código sem _relea
 Obviamente o Rails não pode de forma alguma ter uma _release_ que depende de código não finalizado.
 Contate os autores dessas _gems_ em particular e negocie uma data para a _release_ que funcione para eles.
 
-### Contact the security team (either tenderlove or rafaelfranca)
+### Contate o time de segurança (ambos tenderlove ou rafaelfranca)
 
-Let them know of your plans to release. There may be security issues to be
-addressed, and that can impact your release date.
+Deixe-os a par dos seus planos para a _release_. Podem existir
+problemas de segurança a serem resolvidas, e isso pode impactar na data da sua _release_.
 
-### Notify implementors.
+### Notifique os implementadores
 
-Ruby implementors have high stakes in making sure Rails works. Be kind and
-give them a heads up that Rails will be released soonish.
+Os implementadores do Ruby apostam alto na certeza que o Rails funciona.
+Seja gentil e avise que o Rails vai possuir uma nova _release_ logo.
 
-This is only required for major and minor releases, bugfix releases aren't a
-big enough deal, and are supposed to be backward compatible.
+Isso é apenas necessário para _releases_ de pequeno e grande impacto,
+_releases_ de solução de bugs não possuem tanto problema e supostamente devem ser retro-compativeis.
 
-Send an email just giving a heads up about the upcoming release to these
-lists:
+Envie um email informando sobre a _release_ que está por vir para essas listas:
 
 * team@jruby.org
 * community@rubini.us
 * rubyonrails-core@googlegroups.com
 
-Implementors will love you and help you.
+Os implementadores irão te amar e te ajudar.
 
-## 3 Days before release
+## 3 Dias antes da _release_
 
-This is when you should release the release candidate. Here are your tasks
-for today:
+Aqui é quando você deve liberar a candidata para _release_ (_release candidate_).
+Aqui estão as suas tarefas para hoje:
 
-### Is the CI green? If not, make it green.
+### O CI está verde? Se não, deixe-o verde.
 
-### Is Sam Ruby happy? If not, make him happy.
+### O Sam Ruby está feliz? Se não, deixe-o feliz.
 
-### Contact the security team. CVE emails must be sent on this day.
+### Contate o time de segurança. Emails  de CVE devem ser enviados neste dia.
 
-### Create a release branch.
+### Crie uma _branch_ para a _release_.
 
-From the stable branch, create a release branch. For example, if you're
-releasing Rails 3.0.10, do this:
+Da _branch_ estável, crie uma _branch_ para a _release_.
+Por exemplo, se você vai criar a _release_ do Rails 3.0.10, faça o seguinte:
 
 ```
 [aaron@higgins rails (3-0-stable)]$ git checkout -b 3-0-10
@@ -74,21 +73,21 @@ Switched to a new branch '3-0-10'
 [aaron@higgins rails (3-0-10)]$
 ```
 
-### Update each CHANGELOG.
+### Atualize cada CHANGELOG.
 
-Many times commits are made without the CHANGELOG being updated. You should
-review the commits since the last release, and fill in any missing information
-for each CHANGELOG.
+Muitas vezes commits são feitos sem a atualização do CHANGELOG.
+Você deve revisar os commits desde a ultima release, e preencher qualquer
+informação perdida para cada CHANGELOG.
 
-You can review the commits for the 3.0.10 release like this:
+Você pode revisar os commits para a _release_ dessa forma:s:
 
 ```
 [aaron@higgins rails (3-0-10)]$ git log v3.0.9..
 ```
 
-If you're doing a stable branch release, you should also ensure that all of
-the CHANGELOG entries in the stable branch are also synced to the master
-branch.
+Se você estiver fazendo uma _release_ de uma _branch_ estável,
+você também deve se assegurar de que todas as entradas do CHANGELOG na _branch_ estável
+também estão sincronizadas com a _branch_ master.
 
 ### Put the new version in the RAILS_VERSION file.
 
