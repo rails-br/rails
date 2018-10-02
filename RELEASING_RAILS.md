@@ -134,74 +134,70 @@ VERSIONS="5.0.5.rc1,5.1.3.rc1" rake announce
 
 IMPORTANTE: Caso qualquer usuário experimente regressão quando usar a versão de candidata à release você *deve* adiar a release. Releases com correções de bugs *não devem* quebrar aplicações existentes.
 
-### Post the announcement to the Rails blog.
+### Publique o anúncio no blog do Rails.
 
-If you used Markdown format for your email, you can just paste it into the
-blog.
+Se você usou o formato Markdown no seu email, você pode simplesmente colar o conteúdo no blog.
 
 * http://weblog.rubyonrails.org
 
-### Post the announcement to the Rails Twitter account.
+### Publique o anúncio para a conta do Rails no Twitter.
 
-## Time between release candidate and actual release
+## Tempo entre a candidata à release e a atual release
 
-Check the rails-core mailing list and the GitHub issue list for regressions in
-the RC.
+Confira a lista de email rails-core e a lista de issues no GitHub por retrocessos na RC.
 
-If any regressions are found, fix the regressions and repeat the release
-candidate process. We will not release the final until 72 hours after the
-last release candidate has been pushed. This means that if users find
-regressions, the scheduled release date must be postponed.
+Caso seja encontradas quaisquer regressões, corrija-as e repita o processo de candidatura de release.
+Nós não faremos a release final até passarem 72 horas após a submissão da última candidata à release.
+Isso significa que caso usuários encontrarem retrocessos, a data marcada para a release deve ser adiada.
 
-When you fix the regressions, do not create a new branch. Fix them on the
-stable branch, then cherry pick the commit to your release branch. No other
-commits should be added to the release branch besides regression fixing commits.
+Quando você consertar as regressões, não crie uma nova branch. Conserte-os em uma branch estável, então faça um cherry-pick no commit para a sua branch de release.
+Nenhum outro commit deve ser adicionado na branch de release exceto os de conserto de regressão.
 
-## Day of release
+## O dia da release
 
-Many of these steps are the same as for the release candidate, so if you need
-more explanation on a particular step, see the RC steps.
+Muitos desses passos são os mesmos usados para uma candidata à release, logo se você precisar de mais explicação em um passo específico,
+veja os passos de uma RC.
 
-Today, do this stuff in this order:
+Hoje, faça as coisas nesta ordem:
 
-* Apply security patches to the release branch
-* Update CHANGELOG with security fixes
-* Update RAILS_VERSION to remove the rc
-* Build and test the gem
-* Release the gems
-* If releasing a new stable version:
-  - Trigger stable docs generation (see below)
-  - Update the version in the home page
-* Email security lists
-* Email general announcement lists
+* Aplique correções de segurança na branch de release
+* Atualize o CHANGELOG com correções de segurança
+* Atualize a RAILS_VERSION removendo o RC
+* Construa e teste a gem
+* Faça a publicação (release) das gems
+* Caso esteja fazendo a release de uma nova versão estável:
+  - Rode a geração da documentação estável (veja abaixo)
+  - Atualize a versão na página inicial
+* Envie um email para as listas de segurança
+* Envie um email para as listas de anúncios gerais
 
-### Emailing the Rails security announce list
+### Enviando emails para a lista de anúncios de segurança
 
-Email the security announce list once for each vulnerability fixed.
+Mande um email para a lista de anúncios de segurança para cada vulnerabilidade consertada.
 
-You can do this, or ask the security team to do it.
+Você pode fazer isso ou pedir para o time de segurança para fazê-lo.
 
-Email the security reports to:
+Mande email com relatórios de segurança para:
 
 * rubyonrails-security@googlegroups.com
 * oss-security@lists.openwall.com
 
-Be sure to note the security fixes in your announcement along with CVE numbers
-and links to each patch. Some people may not be able to upgrade right away,
-so we need to give them the security fixes in patch form.
+Tenha certeza de documentar os consertos de segurança junto com os números de CVE e
+links para cada mudança. Algumas pessoas podem não realizar a atualização logo em seguida,
+logo devemos dar a eles as mudanças de segurança na forma de patch.
 
-* Blog announcements
-* Twitter announcements
-* Merge the release branch to the stable branch
-* Drink beer (or other cocktail)
+* Anúncios de blog
+* Anúncios no Twitter
+* Realize o merge da branch de release para a branch estável.
+* Beba uma cerveja (ou algum coquetel)
 
-## Misc
+## Diversos
 
-### Fixing the CI
+### Consertando o CI
 
-There are two simple steps for fixing the CI:
+Existem dois passos simples para arrumar o CI:
 
-1. Identify the problem
-2. Fix it
+1. Identifique o problema
+2. Resolva o problema
 
-Repeat these steps until the CI is green.
+Repita esses passos até o CI ficar verde.
