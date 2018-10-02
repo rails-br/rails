@@ -89,61 +89,50 @@ Se você estiver fazendo uma _release_ de uma _branch_ estável,
 você também deve se assegurar de que todas as entradas do CHANGELOG na _branch_ estável
 também estão sincronizadas com a _branch_ master.
 
-### Put the new version in the RAILS_VERSION file.
+### Coloque a nova versão no arquivo RAILS_VERSION.
 
-Include an RC number if appropriate, e.g. `6.0.0.rc1`.
+Inclua um número para o _Release Candidate_ se for apropriado.Ex.: `6.0.0.rc1`.
 
-### Build and test the gem.
+### Teste e dê um build na gem.
+Rode `rake verify` para gerar as gems e instalá-las localmente. `verify` também gera uma aplicação Rails com uma migração e o inicia para realizar um teste de aceitação de build no seu browser.
 
-Run `rake verify` to generate the gems and install them locally. `verify` also
-generates a Rails app with a migration and boots it to smoke test with in your
-browser.
+Isso vai impedir que você pareça um bobo de subir uma RC para rubygems.org e depois perceber que ela está quebrada.
 
-This will stop you from looking silly when you push an RC to rubygems.org and
-then realize it is broken.
+### Faça uma Release para RubyGems e para o NPM.
 
-### Release to RubyGems and NPM.
+IMPORTANTE: O cliente do Action Cable e os adaptadores UJS da Action View são lançados como
+pacotes do NPM, logo você deve possuir o Node.js instalado, ter uma conta no NPM 
+(npmjs.com), e ser um package owner dos pacotes `actioncable` e `rails-ujs` (você pode conferir isso com o commando `npm owner ls actioncable` e `npm owner ls rails-ujs`) para
+realizar uma release completa. Não realize a release até estar tudo certo com o NPM!
 
-IMPORTANT: The Action Cable client and Action View's UJS adapter are released
-as NPM packages, so you must have Node.js installed, have an NPM account
-(npmjs.com), and be a package owner for `actioncable` and `rails-ujs` (you can
-check this via `npm owner ls actioncable` and `npm owner ls rails-ujs`) in
-order to do a full release. Do not release until you're set up with NPM!
+O comando de release irá criar a tag de release. Caso você não tenha configurado a assinatura de commits, use https://git-scm.com/book/tr/v2/Git-Tools-Signing-Your-Work como guia.
+Você pode gerar chaves com a suite GPG a partir daqui: https://gpgtools.org.
 
-The release task will sign the release tag. If you haven't got commit signing
-set up, use https://git-scm.com/book/tr/v2/Git-Tools-Signing-Your-Work as a
-guide. You can generate keys with the GPG suite from here: https://gpgtools.org.
+Rode `rake changelog:header` para colocar um cabeçalho com uma nova versão em cada
+CHANGELOG. Não faça um commit disso, a task de release vai cuidar disso.
 
-Run `rake changelog:header` to put a header with the new version in every
-CHANGELOG. Don't commit this, the release task handles it.
+Rode `rake release`. Isso irá popular as gemspecs e o package.json do NPM com a atual RAILS_VERSION, faça o commit dessas mudanças, use uma tag disso, e publique as gems para a rubygems.org.
 
-Run `rake release`. This will populate the gemspecs and NPM package.json with
-the current RAILS_VERSION, commit the changes, tag it, and push the gems to
-rubygems.org.
+### Envie anúncios sobre a release do RAILS
 
-### Send Rails release announcements
-
-Write a release announcement that includes the version, changes, and links to
-GitHub where people can find the specific commit list. Here are the mailing
-lists where you should announce:
+Escreva um anúncio de release que inclui versão, mudanças, e links para o GitHub onde as pessoas podem achar a lista de commits específicos. Aqui seguem as listas de email onde vocês devem anúnciar:
 
 * rubyonrails-core@googlegroups.com
 * rubyonrails-talk@googlegroups.com
 * ruby-talk@ruby-lang.org
 
-Use Markdown format for your announcement. Remember to ask people to report
-issues with the release candidate to the rails-core mailing list.
+Use o formato Markdown para fazer seu anúncio.
+Lembre-se de pedir à comunidade para
+reportar issues com sua versão candidata de release para a lista de email rails-core.
 
-NOTE: For patch releases, there's a `rake announce` task to generate the release
-post. It supports multiple patch releases too:
+NOTA:  Para releases de patch, existe uma task `rake announce` para gerar o anúncio da release.
+Ele suporta múltiplas releases de patch tambem:
 
 ```
 VERSIONS="5.0.5.rc1,5.1.3.rc1" rake announce
 ```
 
-IMPORTANT: If any users experience regressions when using the release
-candidate, you *must* postpone the release. Bugfix releases *should not*
-break existing applications.
+IMPORTANTE: Caso qualquer usuário experimente regressão quando usar a versão de candidata à release você *deve* adiar a release. Releases com correções de bugs *não devem* quebrar aplicações existentes.
 
 ### Post the announcement to the Rails blog.
 
