@@ -1,78 +1,71 @@
-# Releasing Rails
+# Criando uma _Release_ do Rails
 
-In this document, we'll cover the steps necessary to release Rails. Each
-section contains steps to take during that time before the release. The times
-suggested in each header are just that: suggestions. However, they should
-really be considered as minimums.
+Neste documento, vamos cobrir os passos necessários para criar uma _release_ do Rails.
+Cada seção contém passos a serem tomados antes da _release_. As datas sugeridas
+em cada cabeçalho são justamente isso: sugestões.
+Porém, elas deveriam realmente serem consideradas como período mínimo.
 
-## 10 Days before release
+## 10 Dias antes da _release_
 
-Today is mostly coordination tasks. Here are the things you must do today:
+As tarefas de hoje são, em sua maioria, de coordenação. Aqui estão algumas coisas que devem ser feitas por você hoje:
 
-### Is the CI green? If not, make it green. (See "Fixing the CI")
+### O CI está verde? Se não, deixe-o verde (Veja "Consertando o CI")
 
-Do not release with a Red CI. You can find the CI status here:
+Não crie uma release com um CI vermelho. Você pode ver o status
+do CI [aqui](http://travis-ci.org/rails/rails).
 
-```
-http://travis-ci.org/rails/rails
-```
+### O Sam Ruby está feliz? Se não estiver, deixe-o feliz.
 
-### Is Sam Ruby happy? If not, make him happy.
-
-Sam Ruby keeps a [test suite](https://github.com/rubys/awdwr) that makes
-sure the code samples in his book
-([Agile Web Development with Rails](https://pragprog.com/titles/rails5/agile-web-development-with-rails-5th-edition))
-all work. These are valuable system tests
-for Rails. You can check the status of these tests here:
-
+Sam Ruby mantém uma [suíte de testes](https://github.com/rubys/awdwr)
+que garante que os exemplos de código de seu livro ([Agile Web Development with Rails](https://pragprog.com/titles/rails5/agile-web-development-with-rails-5th-edition))
+todos funcionem. Esses são testes de sistema valiosos para o Rails.
+Você pode checar o status destes testes aqui:
 [http://intertwingly.net/projects/dashboard.html](http://intertwingly.net/projects/dashboard.html)
 
-Do not release with Red AWDwR tests.
+Não gere uma _release_ tendo testes AWDwR no vermelho.
 
-### Do we have any Git dependencies? If so, contact those authors.
+### Temos alguma dependência no Git? Se sim, contate estes autores.
 
-Having Git dependencies indicates that we depend on unreleased code.
-Obviously Rails cannot be released when it depends on unreleased code.
-Contact the authors of those particular gems and work out a release date that
-suits them.
+Possuir dependências no Git significa que nós dependemos de código sem _release_.
+Obviamente o Rails não pode de forma alguma ter uma _release_ que depende de código não finalizado.
+Contate os autores dessas _gems_ em particular e negocie uma data para a _release_ que funcione para eles.
 
-### Contact the security team (either tenderlove or rafaelfranca)
+### Contate o time de segurança (ambos tenderlove ou rafaelfranca)
 
-Let them know of your plans to release. There may be security issues to be
-addressed, and that can impact your release date.
+Deixe-os a par dos seus planos para a _release_. Podem existir
+problemas de segurança a serem resolvidas, e isso pode impactar na data da sua _release_.
 
-### Notify implementors.
+### Notifique os implementadores
 
-Ruby implementors have high stakes in making sure Rails works. Be kind and
-give them a heads up that Rails will be released soonish.
+Os implementadores do Ruby apostam alto na certeza que o Rails funciona.
+Seja gentil e avise que o Rails vai possuir uma nova _release_ logo.
 
-This is only required for major and minor releases, bugfix releases aren't a
-big enough deal, and are supposed to be backward compatible.
+Isso é apenas necessário para _releases_ de pequeno e grande impacto,
+_releases_ de solução de bugs não possuem tanto problema e supostamente devem ser retro-compativeis.
 
-Send an email just giving a heads up about the upcoming release to these
-lists:
+Envie um email informando sobre a _release_ que está por vir para essas listas:
 
 * team@jruby.org
 * community@rubini.us
 * rubyonrails-core@googlegroups.com
 
-Implementors will love you and help you.
+Os implementadores irão te amar e te ajudar.
 
-## 3 Days before release
+## 3 Dias antes da _release_
 
-This is when you should release the release candidate. Here are your tasks
-for today:
+Aqui é quando você deve liberar a candidata para _release_ (_release candidate_).
+Aqui estão as suas tarefas para hoje:
 
-### Is the CI green? If not, make it green.
+### O CI está verde? Se não, deixe-o verde.
 
-### Is Sam Ruby happy? If not, make him happy.
+### O Sam Ruby está feliz? Se não, deixe-o feliz.
 
-### Contact the security team. CVE emails must be sent on this day.
+### Contate o time de segurança. Emails  de CVE devem ser enviados neste dia.
 
-### Create a release branch.
+### Crie uma _branch_ para a _release_.
 
-From the stable branch, create a release branch. For example, if you're
-releasing Rails 3.0.10, do this:
+Da _branch_ estável, crie uma _branch_ para a _release_.
+Por exemplo, se você vai criar a _release_ do Rails 3.0.10, faça o seguinte:
 
 ```
 [aaron@higgins rails (3-0-stable)]$ git checkout -b 3-0-10
@@ -80,146 +73,131 @@ Switched to a new branch '3-0-10'
 [aaron@higgins rails (3-0-10)]$
 ```
 
-### Update each CHANGELOG.
+### Atualize cada CHANGELOG.
 
-Many times commits are made without the CHANGELOG being updated. You should
-review the commits since the last release, and fill in any missing information
-for each CHANGELOG.
+Muitas vezes commits são feitos sem a atualização do CHANGELOG.
+Você deve revisar os commits desde a ultima release, e preencher qualquer
+informação perdida para cada CHANGELOG.
 
-You can review the commits for the 3.0.10 release like this:
+Você pode revisar os commits para a _release_ dessa forma:s:
 
 ```
 [aaron@higgins rails (3-0-10)]$ git log v3.0.9..
 ```
 
-If you're doing a stable branch release, you should also ensure that all of
-the CHANGELOG entries in the stable branch are also synced to the master
-branch.
+Se você estiver fazendo uma _release_ de uma _branch_ estável,
+você também deve se assegurar de que todas as entradas do CHANGELOG na _branch_ estável
+também estão sincronizadas com a _branch_ master.
 
-### Put the new version in the RAILS_VERSION file.
+### Coloque a nova versão no arquivo RAILS_VERSION.
 
-Include an RC number if appropriate, e.g. `6.0.0.rc1`.
+Inclua um número para o _Release Candidate_ se for apropriado.Ex.: `6.0.0.rc1`.
 
-### Build and test the gem.
+### Teste e dê um build na gem.
+Rode `rake verify` para gerar as gems e instalá-las localmente. `verify` também gera uma aplicação Rails com uma migração e o inicia para realizar um teste de aceitação de build no seu browser.
 
-Run `rake verify` to generate the gems and install them locally. `verify` also
-generates a Rails app with a migration and boots it to smoke test with in your
-browser.
+Isso vai impedir que você pareça um bobo de subir uma RC para rubygems.org e depois perceber que ela está quebrada.
 
-This will stop you from looking silly when you push an RC to rubygems.org and
-then realize it is broken.
+### Faça uma Release para RubyGems e para o NPM.
 
-### Release to RubyGems and NPM.
+IMPORTANTE: O cliente do Action Cable e os adaptadores UJS da Action View são lançados como
+pacotes do NPM, logo você deve possuir o Node.js instalado, ter uma conta no NPM 
+(npmjs.com), e ser um package owner dos pacotes `actioncable` e `rails-ujs` (você pode conferir isso com o commando `npm owner ls actioncable` e `npm owner ls rails-ujs`) para
+realizar uma release completa. Não realize a release até estar tudo certo com o NPM!
 
-IMPORTANT: The Action Cable client and Action View's UJS adapter are released
-as NPM packages, so you must have Node.js installed, have an NPM account
-(npmjs.com), and be a package owner for `actioncable` and `rails-ujs` (you can
-check this via `npm owner ls actioncable` and `npm owner ls rails-ujs`) in
-order to do a full release. Do not release until you're set up with NPM!
+O comando de release irá criar a tag de release. Caso você não tenha configurado a assinatura de commits, use https://git-scm.com/book/tr/v2/Git-Tools-Signing-Your-Work como guia.
+Você pode gerar chaves com a suite GPG a partir daqui: https://gpgtools.org.
 
-The release task will sign the release tag. If you haven't got commit signing
-set up, use https://git-scm.com/book/tr/v2/Git-Tools-Signing-Your-Work as a
-guide. You can generate keys with the GPG suite from here: https://gpgtools.org.
+Rode `rake changelog:header` para colocar um cabeçalho com uma nova versão em cada
+CHANGELOG. Não faça um commit disso, a task de release vai cuidar disso.
 
-Run `rake changelog:header` to put a header with the new version in every
-CHANGELOG. Don't commit this, the release task handles it.
+Rode `rake release`. Isso irá popular as gemspecs e o package.json do NPM com a atual RAILS_VERSION, faça o commit dessas mudanças, use uma tag disso, e publique as gems para a rubygems.org.
 
-Run `rake release`. This will populate the gemspecs and NPM package.json with
-the current RAILS_VERSION, commit the changes, tag it, and push the gems to
-rubygems.org.
+### Envie anúncios sobre a release do RAILS
 
-### Send Rails release announcements
-
-Write a release announcement that includes the version, changes, and links to
-GitHub where people can find the specific commit list. Here are the mailing
-lists where you should announce:
+Escreva um anúncio de release que inclui versão, mudanças, e links para o GitHub onde as pessoas podem achar a lista de commits específicos. Aqui seguem as listas de email onde vocês devem anúnciar:
 
 * rubyonrails-core@googlegroups.com
 * rubyonrails-talk@googlegroups.com
 * ruby-talk@ruby-lang.org
 
-Use Markdown format for your announcement. Remember to ask people to report
-issues with the release candidate to the rails-core mailing list.
+Use o formato Markdown para fazer seu anúncio.
+Lembre-se de pedir à comunidade para
+reportar issues com sua versão candidata de release para a lista de email rails-core.
 
-NOTE: For patch releases, there's a `rake announce` task to generate the release
-post. It supports multiple patch releases too:
+NOTA:  Para releases de patch, existe uma task `rake announce` para gerar o anúncio da release.
+Ele suporta múltiplas releases de patch tambem:
 
 ```
 VERSIONS="5.0.5.rc1,5.1.3.rc1" rake announce
 ```
 
-IMPORTANT: If any users experience regressions when using the release
-candidate, you *must* postpone the release. Bugfix releases *should not*
-break existing applications.
+IMPORTANTE: Caso qualquer usuário experimente regressão quando usar a versão de candidata à release você *deve* adiar a release. Releases com correções de bugs *não devem* quebrar aplicações existentes.
 
-### Post the announcement to the Rails blog.
+### Publique o anúncio no blog do Rails.
 
-If you used Markdown format for your email, you can just paste it into the
-blog.
+Se você usou o formato Markdown no seu email, você pode simplesmente colar o conteúdo no blog.
 
 * http://weblog.rubyonrails.org
 
-### Post the announcement to the Rails Twitter account.
+### Publique o anúncio para a conta do Rails no Twitter.
 
-## Time between release candidate and actual release
+## Tempo entre a candidata à release e a atual release
 
-Check the rails-core mailing list and the GitHub issue list for regressions in
-the RC.
+Confira a lista de email rails-core e a lista de issues no GitHub por retrocessos na RC.
 
-If any regressions are found, fix the regressions and repeat the release
-candidate process. We will not release the final until 72 hours after the
-last release candidate has been pushed. This means that if users find
-regressions, the scheduled release date must be postponed.
+Caso seja encontradas quaisquer regressões, corrija-as e repita o processo de candidatura de release.
+Nós não faremos a release final até passarem 72 horas após a submissão da última candidata à release.
+Isso significa que caso usuários encontrarem retrocessos, a data marcada para a release deve ser adiada.
 
-When you fix the regressions, do not create a new branch. Fix them on the
-stable branch, then cherry pick the commit to your release branch. No other
-commits should be added to the release branch besides regression fixing commits.
+Quando você consertar as regressões, não crie uma nova branch. Conserte-os em uma branch estável, então faça um cherry-pick no commit para a sua branch de release.
+Nenhum outro commit deve ser adicionado na branch de release exceto os de conserto de regressão.
 
-## Day of release
+## O dia da release
 
-Many of these steps are the same as for the release candidate, so if you need
-more explanation on a particular step, see the RC steps.
+Muitos desses passos são os mesmos usados para uma candidata à release, logo se você precisar de mais explicação em um passo específico,
+veja os passos de uma RC.
 
-Today, do this stuff in this order:
+Hoje, faça as coisas nesta ordem:
 
-* Apply security patches to the release branch
-* Update CHANGELOG with security fixes
-* Update RAILS_VERSION to remove the rc
-* Build and test the gem
-* Release the gems
-* If releasing a new stable version:
-  - Trigger stable docs generation (see below)
-  - Update the version in the home page
-* Email security lists
-* Email general announcement lists
+* Aplique correções de segurança na branch de release
+* Atualize o CHANGELOG com correções de segurança
+* Atualize a RAILS_VERSION removendo o RC
+* Construa e teste a gem
+* Faça a publicação (release) das gems
+* Caso esteja fazendo a release de uma nova versão estável:
+  - Rode a geração da documentação estável (veja abaixo)
+  - Atualize a versão na página inicial
+* Envie um email para as listas de segurança
+* Envie um email para as listas de anúncios gerais
 
-### Emailing the Rails security announce list
+### Enviando emails para a lista de anúncios de segurança
 
-Email the security announce list once for each vulnerability fixed.
+Mande um email para a lista de anúncios de segurança para cada vulnerabilidade consertada.
 
-You can do this, or ask the security team to do it.
+Você pode fazer isso ou pedir para o time de segurança para fazê-lo.
 
-Email the security reports to:
+Mande email com relatórios de segurança para:
 
 * rubyonrails-security@googlegroups.com
 * oss-security@lists.openwall.com
 
-Be sure to note the security fixes in your announcement along with CVE numbers
-and links to each patch. Some people may not be able to upgrade right away,
-so we need to give them the security fixes in patch form.
+Tenha certeza de documentar os consertos de segurança junto com os números de CVE e
+links para cada mudança. Algumas pessoas podem não realizar a atualização logo em seguida,
+logo devemos dar a eles as mudanças de segurança na forma de patch.
 
-* Blog announcements
-* Twitter announcements
-* Merge the release branch to the stable branch
-* Drink beer (or other cocktail)
+* Anúncios de blog
+* Anúncios no Twitter
+* Realize o merge da branch de release para a branch estável.
+* Beba uma cerveja (ou algum coquetel)
 
-## Misc
+## Diversos
 
-### Fixing the CI
+### Consertando o CI
 
-There are two simple steps for fixing the CI:
+Existem dois passos simples para arrumar o CI:
 
-1. Identify the problem
-2. Fix it
+1. Identifique o problema
+2. Resolva o problema
 
-Repeat these steps until the CI is green.
+Repita esses passos até o CI ficar verde.
